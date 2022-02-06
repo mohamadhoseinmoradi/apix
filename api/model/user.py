@@ -1,8 +1,4 @@
-user = [
-    {
-        "username":"test1"
-    },
-    {
-        "username":"test2"
-    }
-]
+from api import db
+
+class User(db.Model):
+    
