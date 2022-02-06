@@ -1,0 +1,6 @@
+docker run -d --rm --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=api -e MYSQL_DATABASE=api -e MYSQL_USER=api -e MYSQL_PASSWORD=api mysql
+docker exec -it mysql mysql -u user -p
+
+export API_DATABASE_URI=mysql+pymysql://api:api@localhost:3306/api
+flask db init
+flask db migrate -m "initial migrate"
