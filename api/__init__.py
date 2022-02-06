@@ -5,6 +5,7 @@ from api.config import config
 apiv1_bp = Blueprint("apiv1",__name__, url_prefix="/api/v1")
 apiv1 = Api(apiv1_bp)
 
+from api import resource
 
 def create_app():
     app = Flask(__name__)
