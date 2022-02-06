@@ -1,5 +1,4 @@
-from crypt import methods
-from api import apiv1 as api
+from api.resource import apiv1 as api
 from api.resource.apiv1.user import userResource
 
 api.add_resource(
