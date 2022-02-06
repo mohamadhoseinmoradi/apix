@@ -14,13 +14,7 @@ class userResource(Resource):
             return userController.get_user(user_id)
 
     def post(self):
-        pass
-
-    def patch(self):
-        pass
-
-    def put(self):
-        pass
-    
-    def delete(self):
-        pass
+        """ 
+        POST /users --> create new user.
+        """
+        return userController.create_user()
