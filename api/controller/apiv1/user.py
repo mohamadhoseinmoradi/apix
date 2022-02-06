@@ -3,7 +3,7 @@ from api import db
 from api.model import User
 from api.schema.apiv1 import UserSchema
 
-class userController():
+class UserController():
 
     def get_users():
         users = User.query.all()

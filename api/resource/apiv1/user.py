@@ -1,5 +1,5 @@
 from flask_restx import Resource
-from api.controller.apiv1 import userController
+from api.controller.apiv1 import UserController
 
 class userResource(Resource):
 
@@ -9,12 +9,12 @@ class userResource(Resource):
         GET /users/<user_id> --> get single user.
         """
         if user_id == None:
-            return userController.get_users()
+            return UserController.get_users()
         else:
-            return userController.get_user(user_id)
+            return UserController.get_user(user_id)
 
     def post(self):
         """ 
         POST /users --> create new user.
         """
-        return userController.create_user()
+        return UserController.create_user()
