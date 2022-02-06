@@ -1,3 +1,4 @@
+from api import db
 from api.model import user
 
 
