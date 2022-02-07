@@ -1,7 +1,7 @@
 from flask import Flask, Blueprint
 from flask_restx import Api
 from api import resource
-from api.config import config
+from api.config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_marshmallow import Marshmallow
@@ -15,7 +15,7 @@ apiv1 = Api(apiv1_bp)
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object(config)
+    app.config.from_object(Config)
     db.init_app(app)
     mg.init_app(app, db)
     ma.init_app(app)

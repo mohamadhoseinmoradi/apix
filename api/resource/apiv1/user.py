@@ -1,7 +1,7 @@
 from flask_restx import Resource
 from api.controller.apiv1 import UserController
 
-class userResource(Resource):
+class UserResource(Resource):
 
     def get(self, user_id=None):
         """

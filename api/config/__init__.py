@@ -1,1 +1,1 @@
-from api.config.config import config
+from api.config.config import Config

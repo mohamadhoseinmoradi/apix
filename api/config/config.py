@@ -1,6 +1,6 @@
 from os import environ
 
-class config:
+class Config:
 
     DEBUG = bool(environ.get("API_DEBUG", False))
     TESTING = bool(environ.get("API_TESTING", False))
