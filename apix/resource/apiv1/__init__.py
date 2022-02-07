@@ -1,6 +1,6 @@
-from api.resource import apiv1 as api
-from api.resource.apiv1.user import UserResource
-from api.resource.apiv1.auth import AuthResource
+from apix.resource import apiv1 as api
+from apix.resource.apiv1.user import UserResource
+from apix.resource.apiv1.auth import AuthResource
 
 api.add_resource(
     AuthResource,

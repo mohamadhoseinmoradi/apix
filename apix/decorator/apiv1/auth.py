@@ -3,8 +3,8 @@ from flask import abort, request
 from jwt import decode
 from jwt.exceptions import ExpiredSignatureError
 
-from api.model import User
-from api.config import Config
+from apix.model import User
+from apix.config import Config
 
 function_role_mapper = {
     "get_users": {

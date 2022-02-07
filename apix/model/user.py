@@ -1,5 +1,5 @@
 from shared import uuidgen
-from api import db
+from apix import db
 
 class User(db.Model):
 

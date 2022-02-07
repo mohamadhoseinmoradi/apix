@@ -1,5 +1,5 @@
-from api import ma
-from api.model import User
+from apix import ma
+from apix.model import User
 
 class UserSchema(ma.SQLAlchemySchema):
     class meta:

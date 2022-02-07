@@ -1,3 +1,3 @@
 FLASK_ENV=development
 FLASK_DEBUG=True
-FLASK_APP=api
+FLASK_APP=apix

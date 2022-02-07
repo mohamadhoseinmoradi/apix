@@ -3,9 +3,9 @@ from jwt import encode, decode
 from flask import abort, request
 from jwt.exceptions import ExpiredSignatureError
 
-from api.config import Config
-from api.model import User
-from api.schema.apiv1 import UserSchema
+from apix.config import Config
+from apix.model import User
+from apix.schema.apiv1 import UserSchema
 
 class AuthController:
 

@@ -1,5 +1,5 @@
 from flask_restx import Resource
-from api.controller.apiv1 import UserController
+from apix.controller.apiv1 import UserController
 
 class UserResource(Resource):
 

@@ -1,7 +1,7 @@
 from flask import abort, request
-from api import db
-from api.model import User
-from api.schema.apiv1 import UserSchema
+from apix import db
+from apix.model import User
+from apix.schema.apiv1 import UserSchema
 
 class UserController():
 
