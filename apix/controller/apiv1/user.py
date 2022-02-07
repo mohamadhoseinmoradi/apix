@@ -1,15 +1,16 @@
 from flask import abort, request
+
 from apix import db
 from apix.model import User
 from apix.schema.apiv1 import UserSchema
 
-class UserController():
 
+class UserController:
     def get_users():
         users = User.query.all()
         users_schema = UserSchema(many=True)
         return users_schema.dump(users)
-    
+
     def get_user(user_id):
         user = User.query.get(user_id)
         user_schema = UserSchema()

@@ -1,14 +1,15 @@
 from time import time
-from jwt import encode, decode
+
 from flask import abort, request
+from jwt import decode, encode
 from jwt.exceptions import ExpiredSignatureError
 
 from apix.config import Config
 from apix.model import User
 from apix.schema.apiv1 import UserSchema
 
-class AuthController:
 
+class AuthController:
     def create_token():
         if not request.is_json:
             abort(415)
@@ -27,17 +28,20 @@ class AuthController:
                         "iss": "api",
                         "iat": current_time,
                         "nbf": current_time,
-                        "exp": current_time + Config.JWT_TOKEN_LIFETIME
+                        "exp": current_time + Config.JWT_TOKEN_LIFETIME,
                     },
                     Config.SECRET,
-                    algorithm=Config.JWT_ALGO
-                ).decode('utf8')
-                return { "user": user_schema.dump(user) }, 201, { "X-Subject-Token": jwt_token }
+                    algorithm=Config.JWT_ALGO,
+                ).decode("utf8")
+                return (
+                    {"user": user_schema.dump(user)},
+                    201,
+                    {"X-Subject-Token": jwt_token},
+                )
             else:
                 abort(401)
         else:
             abort(400)
-
 
     def verify_token():
         if not request.is_json:
@@ -47,9 +51,7 @@ class AuthController:
         jwt_token = request.headers.get("X-Subject-Token")
         try:
             jwt_token_data = decode(
-                    jwt_token,
-                    Config.SECRET,
-                    algorithm=[Config.JWT_ALGO]
+                jwt_token, Config.SECRET, algorithm=[Config.JWT_ALGO]
             )
         except ExpiredSignatureError:
             abort(401)
@@ -59,4 +61,4 @@ class AuthController:
         if user is None:
             abort(404)
         user_schema = UserSchema()
-        return { "user": user_schema.dump(user) }, 200, { "X-Subject-Token": jwt_token }
+        return {"user": user_schema.dump(user)}, 200, {"X-Subject-Token": jwt_token}

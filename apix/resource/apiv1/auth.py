@@ -1,5 +1,7 @@
 from flask_restx import Resource
+
 from apix.controller.apiv1 import AuthController
+
 
 class AuthResource(Resource):
     def get(self):

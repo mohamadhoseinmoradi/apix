@@ -1,8 +1,9 @@
 from flask_restx import Resource
+
 from apix.controller.apiv1 import UserController
 
-class UserResource(Resource):
 
+class UserResource(Resource):
     def get(self, user_id=None):
         """
         GET /users --> get collection of users.
@@ -14,7 +15,7 @@ class UserResource(Resource):
             return UserController.get_user(user_id)
 
     def post(self):
-        """ 
+        """
         POST /users --> create new user.
         """
         return UserController.create_user()

@@ -1,18 +1,15 @@
 from functools import wraps
+
 from flask import abort, request
 from jwt import decode
 from jwt.exceptions import ExpiredSignatureError
 
-from apix.model import User
 from apix.config import Config
+from apix.model import User
 
 function_role_mapper = {
-    "get_users": {
-        "users":  ["admin"]
-    },
-    "get_user": {
-        "users": ["admin", ":user_id"]
-    }
+    "get_users": {"users": ["admin"]},
+    "get_user": {"users": ["admin", ":user_id"]},
 }
 
 
@@ -22,13 +19,11 @@ def auth_required(func):
         if not request.is_json:
             abort(415)
         if "X-Auth-Token" not in request.headers:
-           abort(401)
+            abort(401)
         jwt_token = request.headers.get("X-Auth-Token")
         try:
             jwt_token_data = decode(
-                jwt_token,
-                Config.SECRET,
-                algorthm=[Config.JWT_ALGO]
+                jwt_token, Config.SECRET, algorthm=[Config.JWT_ALGO]
             )
         except ExpiredSignatureError:
             abort(401)
@@ -37,9 +32,9 @@ def auth_required(func):
         user = User.query.get(jwt_token_data["user_id"])
         if user is None:
             abort(404)
-        func_mapper = function_role_mapper[func.__name__] 
+        func_mapper = function_role_mapper[func.__name__]
         if user.username in func_mapper["users"]:
-            return func(*args,**kwargs)
+            return func(*args, **kwargs)
         elif ":user_id" in func_mapper["users"]:
             user_id_mapper = func.__code__.co_varnames.index("user_id")
             if args[user_id_mapper] == user.id:
@@ -48,5 +43,5 @@ def auth_required(func):
                 abort(403)
         else:
             abort(403)
+
     return wrapper
-    
