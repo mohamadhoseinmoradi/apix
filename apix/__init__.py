@@ -7,7 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from apix import resource
 from apix.config import Config
 
-db = SQLAlchemy()
+db = SQLAlchemy() 
 mg = Migrate()
 ma = Marshmallow()
 
